@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Juventud Ya! — Misiones regenerativas en Sevilla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  :root{
+    --crema: #F5EFE0;
+    --crema-claro: #FBF7EC;
+    --crema-mid: #ECE4D0;
+    --bosque-deep: #0E2606;
+    --bosque: #1F4509;
+    --bosque-2: #2D5E11;
+    --fresco: #5C8F1E;
+    --brote: #97C459;
+    --brote-claro: #C9DDA5;
+    --amber: #E8920C;
+    --amber-deep: #B36B05;
+    --terra: #B84A1B;
+    --carbon: #1A1A17;
+    --carbon-2: #3D3D38;
+    --rojo-bg: #F4DBD4;
+    --rojo-tx: #6E2814;
+    --verde-bg: #E2EBCB;
+    --verde-tx: #1F4509;
+    --display: "Bricolage Grotesque", -apple-system, sans-serif;
+    --body: "Inter", -apple-system, sans-serif;
+    --serif: "Fraunces", Georgia, serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family: var(--body);
+    background: var(--crema);
+    color: var(--carbon);
+    line-height:1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:1000;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.05 0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: .04; mix-blend-mode: multiply;
+  }
+  img,svg{max-width:100%; display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+  a{color:inherit; text-decoration:none;}
+
+  h1,h2,h3{ font-family: var(--display); font-weight:600; letter-spacing:-.02em; line-height:1.05; }
+  .eyebrow{
+    font-family: var(--body);
+    font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+    color: var(--fresco);
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .eyebrow::before{
+    content:""; width:18px; height:1px; background: var(--fresco);
+  }
+
+  .ya-stamp{
+    display:inline-block; font-family: var(--serif); font-style: italic;
+    font-weight: 600; color: var(--amber);
+    transform: rotate(-4deg) translateY(-2px);
+    position: relative;
+  }
+  .ya-stamp::after{
+    content:""; position:absolute; left:-6px; right:-6px; bottom:6%; height:30%;
+    background: rgba(232,146,12,.18); border-radius: 3px; z-index:-1;
+    transform: rotate(1.5deg);
+  }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    padding:16px 26px; border-radius:48px; font-family:var(--body);
+    font-weight:600; font-size:15px; text-decoration:none; border:none;
+    cursor:pointer; transition: all .22s ease;
+  }
+  .btn-primary{
+    background: var(--carbon); color: var(--crema-claro);
+    box-shadow: 0 8px 20px rgba(14,38,6,.18);
+  }
+  .btn-primary:hover{ background: var(--bosque); transform: translateY(-2px); box-shadow: 0 14px 30px rgba(14,38,6,.28);}
+  .btn-primary .arrow{ transition: transform .25s ease; }
+  .btn-primary:hover .arrow{ transform: translateX(4px); }
+  .btn-ghost-dark{
+    background: transparent; color: var(--bosque-deep);
+    border: 1.5px solid rgba(14,38,6,.25);
+  }
+  .btn-ghost-dark:hover{ background: var(--crema-mid); border-color: var(--bosque-deep); }
+  .btn-ghost-light{
+    background: transparent; color: var(--crema-claro);
+    border: 1.5px solid rgba(245,239,224,.35);
+  }
+  .btn-ghost-light:hover{ background: rgba(245,239,224,.08); border-color: var(--crema-claro); }
+  .btn-amber{
+    background: var(--amber); color: #2A1700;
+    box-shadow: 0 8px 24px rgba(232,146,12,.32);
+  }
+  .btn-amber:hover{ transform: translateY(-2px); box-shadow: 0 14px 32px rgba(232,146,12,.42); }
+
+  nav{
+    position: sticky; top:0; z-index: 100;
+    background: rgba(245,239,224,.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(14,38,6,.08);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 0;
+  }
+  .logo{ display:flex; align-items:center; gap:10px; font-family: var(--display); font-weight:700; font-size:18px; color: var(--bosque-deep); }
+  .logo svg{ width:26px; height:26px;}
+  .logo .ya{ color: var(--fresco); }
+  .nav-cta{ display:flex; align-items:center; gap:14px; }
+  .nav-loc{
+    font-size:13px; color: var(--carbon-2);
+    display:inline-flex; align-items:center; gap:6px;
+  }
+  .nav-loc svg{ width:14px; height:14px; }
+
+  .hero{
+    position: relative;
+    padding: 76px 0 88px;
+    overflow: hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.35fr 1fr; gap: 60px; align-items: center;
+  }
+  .hero-meta{
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+    font-size:13px; color: var(--carbon-2);
+    margin-bottom: 36px;
+  }
+  .hero-meta .dot{ width:4px; height:4px; border-radius:50%; background:var(--carbon-2);}
+  .hero-meta .pill{
+    display:inline-flex; align-items:center; gap:6px;
+    background: var(--bosque-deep); color: var(--crema-claro);
+    padding:5px 11px 5px 9px; border-radius: 20px; font-weight:500; font-size:12px;
+  }
+  .hero-meta .pill svg{ width:12px; height:12px;}
+
+  h1.hero-title{
+    font-size: clamp(46px, 7vw, 84px);
+    font-weight: 700;
+    line-height: .98;
+    letter-spacing: -.035em;
+    color: var(--bosque-deep);
+    margin-bottom: 28px;
+  }
+  h1.hero-title .punct{ color: var(--terra); font-weight: 600;}
+  h1.hero-title em{
+    font-family: var(--serif); font-style: italic; font-weight:500;
+    color: var(--fresco); letter-spacing: -.01em;
+  }
+  .hero-sub{
+    font-size:19px; max-width:520px; color: var(--carbon-2); line-height:1.55;
+    margin-bottom: 36px;
+  }
+  .hero-ctas{
+    display:flex; flex-wrap:wrap; gap:14px; margin-bottom: 22px;
+  }
+  .hero-note{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:13px; color: var(--carbon-2); font-weight:500;
+  }
+  .hero-note .check{ color: var(--fresco); }
+
+  .hero-visual{
+    position: relative;
+    display:flex; flex-direction: column; align-items: center; gap: 30px;
+  }
+  .sprout-wrap{
+    width: 100%; max-width: 360px;
+    position: relative;
+  }
+  .sprout-wrap svg{ width: 100%; height: auto;}
+  .qr-card{
+    background: var(--crema-claro);
+    border: 1px solid rgba(14,38,6,.12);
+    border-radius: 18px;
+    padding: 18px 22px;
+    display:flex; align-items:center; gap:18px;
+    box-shadow: 0 16px 38px rgba(14,38,6,.08);
+    max-width: 340px;
+  }
+  #qrcode{ background:#fff; padding:6px; border-radius:8px; line-height:0; }
+  .qr-card strong{ display:block; font-family: var(--display); font-size:15px; color: var(--bosque-deep); margin-bottom:4px; font-weight:600;}
+  .qr-card p{ font-size:12.5px; color: var(--carbon-2); line-height:1.4; margin:0;}
+
+  .stats{
+    background: var(--bosque-deep);
+    color: var(--crema-claro);
+    padding: 56px 0;
+    position: relative;
+  }
+  .stats-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+    align-items: end;
+  }
+  .stat{ position: relative; }
+  .stat-num{
+    font-family: var(--display);
+    font-size: clamp(64px, 9vw, 112px);
+    font-weight: 700; line-height: .9; letter-spacing: -.04em;
+    color: var(--brote);
+    display:flex; align-items: baseline;
+  }
+  .stat-num .unit{
+    font-size: .28em; color: var(--crema-claro); margin-left: 8px; font-weight: 500; letter-spacing: -.01em;
+  }
+  .stat-label{
+    font-size:14px; color: rgba(245,239,224,.7);
+    margin-top: 10px; max-width: 220px; line-height:1.4;
+  }
+  .stat-label strong{ color: var(--crema-claro); font-weight:600; display:block; margin-bottom:2px; font-size:15px;}
+
+  section.content{ padding: 100px 0; }
+  h2{
+    font-size: clamp(34px, 4.5vw, 52px);
+    line-height: 1.04; letter-spacing: -.025em;
+    max-width: 760px;
+    color: var(--bosque-deep);
+    margin-top: 18px;
+  }
+  .section-intro{
+    max-width: 620px; margin-top: 22px;
+    color: var(--carbon-2); font-size: 17px; line-height: 1.6;
+  }
+
+  .compare{ background: var(--crema-claro); }
+  .compare-head{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 56px;
+  }
+  .compare-tag{
+    text-align: center; padding: 14px;
+    border-radius: 100px; font-weight:600; font-size:14px;
+    display:flex; align-items: center; justify-content: center; gap: 10px;
+  }
+  .compare-tag.ex{ background: var(--rojo-bg); color: var(--rojo-tx); }
+  .compare-tag.re{ background: var(--verde-bg); color: var(--verde-tx); }
+  .compare-tag .ico{ width:16px; height:16px;}
+  .compare-block{ margin-top: 14px; }
+  .compare-cat{
+    display:flex; align-items: baseline; gap: 18px;
+    margin: 38px 0 14px;
+    padding-bottom: 10px; border-bottom: 1px solid rgba(14,38,6,.12);
+  }
+  .compare-cat h3{
+    font-family: var(--display); font-size: 22px; font-weight:600; color: var(--bosque-deep);
+    letter-spacing: -.015em;
+  }
+  .compare-cat .marker{
+    font-family: var(--serif); font-style: italic; font-size: 13px;
+    color: var(--fresco); font-weight:500;
+  }
+  .compare-row{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 18px;
+  }
+  .compare-card{
+    border-radius: 16px; padding: 22px 24px; font-size: 15.5px; line-height:1.5;
+  }
+  .compare-card.ex{ background: var(--rojo-bg); color: var(--rojo-tx); }
+  .compare-card.re{ background: var(--verde-bg); color: var(--verde-tx); }
+  .compare-foot{
+    margin-top: 50px;
+    display:flex; align-items: center; justify-content: center; gap: 14px;
+    background: var(--bosque-deep);
+    color: var(--crema-claro);
+    padding: 22px 28px; border-radius: 100px;
+    font-weight:500; font-size: 16px;
+    max-width: fit-content; margin-left: auto; margin-right: auto;
+  }
+  .compare-foot svg{ width: 22px; height: 22px; }
+
+  .urgencia{ background: var(--bosque-deep); color: var(--crema); }
+  .urgencia .eyebrow{ color: var(--brote); }
+  .urgencia .eyebrow::before{ background: var(--brote);}
+  .urgencia h2{ color: var(--crema-claro); }
+  .urgencia .section-intro{ color: rgba(245,239,224,.78); }
+  .timeline{
+    margin-top: 60px;
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+    position: relative;
+  }
+  .timeline::before{
+    content:""; position:absolute; top:9px; left:8%; right:8%; height:1px;
+    background: linear-gradient(90deg, var(--brote-claro) 0%, var(--brote) 50%, var(--terra) 100%);
+    opacity:.4;
+  }
+  .t-step{ position: relative; padding-right: 12px;}
+  .t-dot{
+    width:18px; height:18px; border-radius:50%;
+    background: var(--brote);
+    margin-bottom: 24px; position: relative; z-index: 2;
+    box-shadow: 0 0 0 4px var(--bosque-deep);
+  }
+  .t-dot.mid{ background: var(--amber); }
+  .t-dot.end{ background: var(--terra); }
+  .t-step .tlabel{
+    font-family: var(--display); font-weight: 600; font-size: 21px;
+    color: var(--crema-claro); margin-bottom: 10px; letter-spacing:-.015em;
+  }
+  .t-step p{ font-size: 15px; color: rgba(245,239,224,.7); line-height: 1.5;}
+
+  .benefits{ background: var(--crema); }
+  .benefits-grid{
+    margin-top: 56px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+  }
+  .benefit{
+    background: var(--crema-claro);
+    border: 1px solid rgba(14,38,6,.08);
+    border-radius: 18px; padding: 28px 24px;
+    position: relative;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .benefit:hover{ transform: translateY(-3px); box-shadow: 0 14px 28px rgba(14,38,6,.08); }
+  .benefit .icn{
+    width: 38px; height: 38px;
+    display:flex; align-items:center; justify-content:center;
+    background: var(--bosque-deep); border-radius: 12px;
+    margin-bottom: 22px;
+  }
+  .benefit .icn svg{ width:18px; height:18px; }
+  .benefit h3{
+    font-family: var(--display); font-size: 20px; font-weight: 600;
+    color: var(--bosque-deep); margin-bottom: 8px; letter-spacing: -.015em;
+  }
+  .benefit p{ font-size: 14.5px; color: var(--carbon-2); line-height: 1.5; }
+
+  .work{ background: var(--crema-claro); }
+  .steps{
+    margin-top: 56px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  }
+  .step{
+    background: var(--crema);
+    border: 1px solid rgba(14,38,6,.1);
+    border-radius: 20px;
+    padding: 36px 30px 34px;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    position: relative;
+  }
+  .step:hover{ transform: translateY(-3px); border-color: rgba(14,38,6,.2); box-shadow: 0 16px 32px rgba(14,38,6,.06);}
+  .step-num{
+    font-family: var(--display);
+    font-size: 56px; font-weight: 700;
+    color: var(--fresco); line-height: 1;
+    letter-spacing: -.04em; margin-bottom: 22px;
+  }
+  .step h3{
+    font-family: var(--display); font-size: 22px; font-weight: 600;
+    color: var(--bosque-deep); margin-bottom: 10px; letter-spacing: -.018em;
+  }
+  .step p{ font-size: 15px; color: var(--carbon-2); line-height: 1.55; }
+
+  /* ============== SECCIÓN SECUNDARIA: DIFUSIÓN ============== */
+  .extra{
+    background: var(--crema);
+    padding: 30px 0 80px;
+  }
+  .extra-card{
+    background: var(--crema-claro);
+    border: 1px solid rgba(14,38,6,.08);
+    border-left: 4px solid var(--amber);
+    border-radius: 18px;
+    padding: 38px 44px;
+    display: grid; grid-template-columns: 1.5fr 1fr; gap: 36px; align-items: center;
+    transition: box-shadow .25s ease;
+  }
+  .extra-card:hover{ box-shadow: 0 16px 36px rgba(14,38,6,.07); }
+  .extra-eyebrow{
+    font-family: var(--body);
+    font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--amber-deep);
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-bottom: 14px;
+  }
+  .extra-eyebrow::before{
+    content:""; width: 18px; height: 1px; background: var(--amber-deep);
+  }
+  .extra-card h3{
+    font-family: var(--display); font-size: clamp(22px, 2.4vw, 28px); font-weight: 600;
+    color: var(--bosque-deep); margin-bottom: 12px; letter-spacing: -.02em;
+    line-height: 1.15;
+  }
+  .extra-card h3 em{
+    font-family: var(--serif); font-style: italic; font-weight: 500; color: var(--amber-deep);
+  }
+  .extra-card p{ font-size: 15.5px; color: var(--carbon-2); line-height: 1.55; }
+  .extra-card p strong{ color: var(--bosque-deep); font-weight: 600; }
+  .extra-cta{ display: flex; justify-content: flex-end; }
+
+  .closing{
+    background: var(--crema);
+    text-align: center; padding: 110px 0;
+    position: relative; overflow: hidden;
+  }
+  .closing-decoration{
+    position: absolute; left: 50%; top: 40px; transform: translateX(-50%);
+    width: 32px; opacity:.5;
+  }
+  .closing blockquote{
+    font-family: var(--display); font-weight: 500;
+    font-size: clamp(28px, 4.5vw, 44px); line-height: 1.18;
+    color: var(--bosque-deep); max-width: 760px; margin: 30px auto 0;
+    letter-spacing: -.02em;
+  }
+  .closing blockquote em{ font-family: var(--serif); font-style: italic; color: var(--fresco); font-weight: 500;}
+  .closing .diff{
+    margin-top: 40px;
+    font-size: 17px; color: var(--carbon-2); max-width: 580px;
+    margin-left: auto; margin-right: auto; line-height: 1.55;
+  }
+  .closing .diff strong{ color: var(--bosque-deep); font-weight: 600;}
+
+  .final{
+    background: var(--bosque-deep);
+    color: var(--crema-claro);
+    padding: 100px 0 80px;
+    position: relative; overflow: hidden;
+  }
+  .final::before{
+    content:""; position:absolute; top:-200px; right:-200px; width: 600px; height:600px;
+    background: radial-gradient(circle, rgba(151,196,89,.16) 0%, rgba(151,196,89,0) 65%);
+    pointer-events:none;
+  }
+  .final-inner{ position: relative; z-index: 1; text-align: center; max-width: 720px; margin: 0 auto; }
+  .final .eyebrow{ color: var(--brote); justify-content: center;}
+  .final .eyebrow::before{ background: var(--brote);}
+  .final h2{
+    color: var(--crema-claro); margin: 18px auto 0; text-align: center;
+  }
+  .final .section-intro{
+    color: rgba(245,239,224,.75); margin-left:auto; margin-right: auto; text-align: center;
+  }
+  .final-ctas{
+    display:flex; flex-wrap:wrap; gap:14px; justify-content: center;
+    margin-top: 44px;
+  }
+  .final-qr{
+    margin: 50px auto 0;
+    background: rgba(245,239,224,.06);
+    border: 1px solid rgba(245,239,224,.14);
+    border-radius: 18px; padding: 22px;
+    display: flex; align-items: center; gap: 22px;
+    max-width: fit-content;
+  }
+  #qrcode-final{ background:#fff; padding:6px; border-radius:8px; line-height:0; }
+  .final-qr strong{ display:block; font-family: var(--display); font-size:15px; color: var(--crema-claro); margin-bottom:4px; font-weight:600;}
+  .final-qr p{ font-size:12.5px; color: rgba(245,239,224,.65);}
+
+  .form-card{
+    margin: 40px auto 0; max-width: 480px;
+    background: rgba(245,239,224,.06);
+    border: 1px solid rgba(245,239,224,.16);
+    border-radius: 20px; padding: 28px;
+    text-align: left;
+  }
+  .form-card label{
+    font-size: 13px; color: rgba(245,239,224,.75);
+    display: block; margin-bottom: 10px; font-weight: 500;
+  }
+  .form-row{ display:flex; gap:10px; }
+  .form-row input{
+    flex: 1; padding: 15px 18px; border-radius: 30px; border: none;
+    font-size: 15px; font-family: var(--body); background: var(--crema-claro); color: var(--carbon);
+    outline: none;
+  }
+  .form-row input:focus{ box-shadow: 0 0 0 3px rgba(151,196,89,.4); }
+
+  footer{
+    background: #08190A;
+    color: rgba(245,239,224,.55); padding: 36px 0;
+    border-top: 1px solid rgba(245,239,224,.06);
+  }
+  .footer-inner{
+    display:flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 18px; font-size: 13px;
+  }
+  .footer-inner .logo{ color: var(--crema-claro);}
+
+  @media (max-width: 880px){
+    .hero-grid{ grid-template-columns: 1fr; gap: 50px;}
+    .hero-visual{ order: -1; }
+    .sprout-wrap{ max-width: 220px; }
+    .stats-grid{ grid-template-columns: 1fr; gap: 40px;}
+    .benefits-grid{ grid-template-columns: repeat(2, 1fr);}
+    .steps{ grid-template-columns: 1fr;}
+    .timeline{ grid-template-columns: 1fr; gap: 40px;}
+    .timeline::before{ display:none; }
+    .compare-head{ grid-template-columns: 1fr; }
+    .compare-row{ grid-template-columns: 1fr; }
+    .nav-loc{ display:none; }
+    .form-row{ flex-direction: column;}
+    .extra-card{ grid-template-columns: 1fr; padding: 32px 28px; gap: 24px;}
+    .extra-cta{ justify-content: flex-start; }
+  }
+  @media (max-width: 480px){
+    .benefits-grid{ grid-template-columns: 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a href="#" class="logo">
+      <svg viewBox="0 0 32 32" fill="none">
+        <path d="M16 26C16 26 9 23 9 14C9 9 12 6 16 6C20 6 23 9 23 14C23 23 16 26 16 26Z" fill="#1F4509"/>
+        <path d="M16 26C16 26 21 23 21 15C21 11 19 8 16 8C13 8 11 11 11 15C11 23 16 26 16 26Z" fill="#5C8F1E"/>
+        <line x1="16" y1="26" x2="16" y2="29" stroke="#0E2606" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      Juventud <span class="ya">Ya!</span>
+    </a>
+    <div class="nav-cta">
+      <span class="nav-loc">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-7.5 8-13a8 8 0 1 0-16 0c0 5.5 8 13 8 13Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
+        Sevilla
+      </span>
+      <a href="https://wa.me/34600000000" class="btn btn-primary" style="padding:12px 20px; font-size:14px;">
+        Únete por WhatsApp
+        <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="hero-meta">
+          <span class="pill">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-7.5 8-13a8 8 0 1 0-16 0c0 5.5 8 13 8 13Z" stroke="#F5EFE0" stroke-width="2"/><circle cx="12" cy="9" r="2.5" stroke="#F5EFE0" stroke-width="2"/></svg>
+            Sevilla, 37°23′N
+          </span>
+          <span class="dot"></span>
+          <span>Jóvenes en acción regenerativa</span>
+        </div>
+
+        <h1 class="hero-title">Cambia<span class="punct">.</span> Acaba con la crisis climática con una <em>misión de 3 horas</em> a la semana<span class="punct">.</span></h1>
+
+        <p class="hero-sub">Únete a un equipo de 5 jóvenes en Sevilla que está pasando a la acción regenerativa, <span class="ya-stamp">ya</span>.</p>
+
+        <div class="hero-ctas">
+          <a href="https://wa.me/34600000000" class="btn btn-primary">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.5.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2Z"/></svg>
+            Únete por WhatsApp
+            <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#formulario" class="btn btn-ghost-dark">Déjanos tu WhatsApp</a>
+        </div>
+
+        <div class="hero-note">
+          <svg class="check" width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/><path d="m8 12 3 3 5-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Sin compromiso. Sin permanencia. Sin cuotas.
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="sprout-wrap">
+          <svg viewBox="0 0 360 380" fill="none">
+            <line x1="40" y1="220" x2="320" y2="220" stroke="#1F4509" stroke-width="1.5" stroke-dasharray="2 6" opacity=".4"/>
+            <g opacity=".7">
+              <path d="M180 220 Q180 260 165 290 Q155 310 145 330" stroke="#1F4509" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+              <path d="M180 220 Q180 250 195 280 Q205 305 215 325" stroke="#1F4509" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+              <path d="M180 220 Q180 245 170 270" stroke="#1F4509" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+              <path d="M180 220 Q180 245 192 270" stroke="#1F4509" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+              <path d="M165 290 Q155 295 145 295" stroke="#1F4509" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+              <path d="M195 280 Q205 285 215 285" stroke="#1F4509" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+            </g>
+            <line x1="180" y1="220" x2="180" y2="130" stroke="#1F4509" stroke-width="3" stroke-linecap="round"/>
+            <path d="M180 160 C 140 155, 110 110, 130 70 C 165 90, 185 130, 180 160 Z" fill="#5C8F1E"/>
+            <path d="M180 140 C 230 130, 270 80, 250 30 C 210 50, 180 100, 180 140 Z" fill="#97C459"/>
+            <circle cx="180" cy="225" r="5" fill="#E8920C"/>
+            <circle cx="290" cy="60" r="18" fill="none" stroke="#E8920C" stroke-width="1.5" opacity=".6"/>
+            <g stroke="#E8920C" stroke-width="1.5" stroke-linecap="round" opacity=".6">
+              <line x1="290" y1="30" x2="290" y2="22"/>
+              <line x1="290" y1="90" x2="290" y2="98"/>
+              <line x1="260" y1="60" x2="252" y2="60"/>
+              <line x1="320" y1="60" x2="328" y2="60"/>
+              <line x1="270" y1="40" x2="265" y2="35"/>
+              <line x1="310" y1="40" x2="315" y2="35"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="qr-card">
+          <div id="qrcode"></div>
+          <div>
+            <strong>Escanéame</strong>
+            <p>Te lleva directo a nuestro<br>WhatsApp en Sevilla</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="stats">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-num">3<span class="unit">h / semana</span></div>
+        <div class="stat-label"><strong>Es todo lo que pedimos</strong>Lo justo para construir algo real, sin invadir tu vida</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5<span class="unit">jóvenes</span></div>
+        <div class="stat-label"><strong>Por cada equipo de misión</strong>Pequeños grupos que se mueven rápido y se cuidan</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">10<span class="unit">años</span></div>
+        <div class="stat-label"><strong>Es la ventana real</strong>El plazo que tenemos antes de arriesgar el colapso</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content urgencia">
+  <div class="wrap">
+    <span class="eyebrow">Por qué existimos</span>
+    <h2>Vivimos una crisis planetaria <em style="font-family:var(--serif); font-style:italic; font-weight:500; color:var(--terra);">urgente</em>.</h2>
+    <p class="section-intro">Si no damos respuesta en los próximos 10 años, nos arriesgamos al colapso de nuestra sociedad. No es alarmismo: es la razón por la que actuamos hoy, no mañana.</p>
+
+    <div class="timeline">
+      <div class="t-step">
+        <div class="t-dot"></div>
+        <div class="tlabel">Hoy</div>
+        <p>Un sistema extractivista deteriora los territorios de los que depende la vida.</p>
+      </div>
+      <div class="t-step">
+        <div class="t-dot mid"></div>
+        <div class="tlabel">Próximos 10 años</div>
+        <p>La ventana real que tenemos para cambiar el rumbo del planeta.</p>
+      </div>
+      <div class="t-step">
+        <div class="t-dot end"></div>
+        <div class="tlabel">Lo que elegimos</div>
+        <p>Colapso si no actuamos, o un futuro regenerativo si lo hacemos juntos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content compare">
+  <div class="wrap">
+    <span class="eyebrow">Nuestros principios</span>
+    <h2>Extractivista o regenerativo: la diferencia está en <em style="font-family:var(--serif); font-style:italic; font-weight:500; color:var(--fresco);">cada decisión</em>.</h2>
+    <p class="section-intro">Regenerativo es lo que devuelve un territorio a un estado óptimo para la vida sostenible. Extractivista es extraer recursos deteriorando los sistemas de los que depende la vida.</p>
+
+    <div class="compare-head">
+      <div class="compare-tag ex">
+        <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M12 2 2 22h20L12 2Z" stroke="currentColor" stroke-width="1.8"/><path d="M12 10v5M12 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Extractivista
+      </div>
+      <div class="compare-tag re">
+        <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-3-7-10c0-4 3-7 7-7s7 3 7 7c0 7-7 10-7 10Z" stroke="currentColor" stroke-width="1.8"/></svg>
+        Regenerativo
+      </div>
+    </div>
+
+    <div class="compare-block">
+      <div class="compare-cat">
+        <h3>Suelo</h3>
+        <span class="marker">agricultura</span>
+      </div>
+      <div class="compare-row">
+        <div class="compare-card ex">Uso de químicos y procesos agresivos frente a la productividad sostenida del territorio.</div>
+        <div class="compare-card re">Agricultura ecológica pensada para la salud del territorio a largo plazo.</div>
+      </div>
+
+      <div class="compare-cat">
+        <h3>Construcción</h3>
+        <span class="marker">edificación y vivienda</span>
+      </div>
+      <div class="compare-row">
+        <div class="compare-card ex">Producción rentable a corto plazo, con factores agresivos como el aire acondicionado y materiales contaminantes.</div>
+        <div class="compare-card re">Construcción regenerativa: más cara hoy, viable y eficiente a largo plazo.</div>
+      </div>
+
+      <div class="compare-cat">
+        <h3>Transporte</h3>
+        <span class="marker">movilidad urbana</span>
+      </div>
+      <div class="compare-row">
+        <div class="compare-card ex">Rendimiento a corto plazo: consumo de gasolina y litio, destrucción del sistema a largo plazo.</div>
+        <div class="compare-card re">Transporte público, vehículos eléctricos y ciudades diseñadas para una movilidad regenerativa.</div>
+      </div>
+    </div>
+
+    <div class="compare-foot">
+      <svg viewBox="0 0 32 32" fill="none">
+        <path d="M16 26C16 26 9 23 9 14C9 9 12 6 16 6C20 6 23 9 23 14C23 23 16 26 16 26Z" fill="#5C8F1E"/>
+        <path d="M16 26C16 26 21 23 21 15C21 11 19 8 16 8C13 8 11 11 11 15C11 23 16 26 16 26Z" fill="#97C459"/>
+      </svg>
+      Juventud Ya! trabaja por lo regenerativo
+    </div>
+  </div>
+</section>
+
+<section class="content benefits">
+  <div class="wrap">
+    <span class="eyebrow">Qué conseguimos</span>
+    <h2>Los beneficios reales de un sistema regenerativo.</h2>
+
+    <div class="benefits-grid">
+      <div class="benefit">
+        <div class="icn"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-7-10a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 5.5-7 10-7 10l-2 1-2-1Z" stroke="#F5EFE0" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <h3>Salud</h3>
+        <p>De las personas y de todos los seres vivos del territorio.</p>
+      </div>
+      <div class="benefit">
+        <div class="icn"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 10l7-7 7 7" stroke="#F5EFE0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Esperanza</h3>
+        <p>A largo plazo, para nuestra generación y las que vienen.</p>
+      </div>
+      <div class="benefit">
+        <div class="icn"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#F5EFE0" stroke-width="1.8"/><path d="M9 10h4.5a1.5 1.5 0 0 1 0 3H9.5a1.5 1.5 0 0 0 0 3H15" stroke="#F5EFE0" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>Rentabilidad</h3>
+        <p>Viable y sostenida en el tiempo, no solo a corto plazo.</p>
+      </div>
+      <div class="benefit">
+        <div class="icn"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12s4-8 9-8 9 8 9 8-4 8-9 8-9-8-9-8Z" stroke="#F5EFE0" stroke-width="1.8"/><circle cx="12" cy="12" r="3" stroke="#F5EFE0" stroke-width="1.8"/></svg></div>
+        <h3>Futuro</h3>
+        <p>Evitamos el colapso actuando ahora, mientras todavía podemos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content work">
+  <div class="wrap">
+    <span class="eyebrow">Cómo funciona</span>
+    <h2>Tres pasos y estás <em style="font-family:var(--serif); font-style:italic; font-weight:500; color:var(--fresco);">dentro</em>.</h2>
+    <p class="section-intro">Sin formularios largos. Sin reuniones para "ver si encajas". Esto es lo único que pasa entre que te decides y que empiezas tu primera misión.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Nos das tu WhatsApp</h3>
+        <p>Por mensaje directo, escaneando el QR o dejándonos tu número en el formulario. Lo que menos fricción tenga para ti.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Te unimos a un equipo de 5</h3>
+        <p>Jóvenes en Sevilla con tu misma motivación. Nos coordinamos por WhatsApp para encajar la próxima misión.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Empiezas a actuar</h3>
+        <p>3 horas a la semana de acción regenerativa real: suelo, construcción, movilidad. Sin compromiso de permanencia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="extra">
+  <div class="wrap">
+    <div class="extra-card">
+      <div>
+        <span class="extra-eyebrow">¿No te encajan 3 horas a la semana?</span>
+        <h3>Ayúdanos a <em>difundir</em>.</h3>
+        <p>Súmate al canal de difusión y compartirás una de nuestras publicaciones <strong>al mes</strong> en cualquiera de tus redes. Eso es todo el compromiso.</p>
+      </div>
+      <div class="extra-cta">
+        <a href="https://wa.me/34600000000?text=Hola,%20quiero%20unirme%20al%20canal%20de%20difusi%C3%B3n" class="btn btn-ghost-dark">
+          Únete al canal de difusión
+          <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <svg class="closing-decoration" viewBox="0 0 32 32" fill="none">
+      <path d="M16 26C16 26 9 23 9 14C9 9 12 6 16 6C20 6 23 9 23 14C23 23 16 26 16 26Z" fill="#5C8F1E"/>
+      <path d="M16 26C16 26 21 23 21 15C21 11 19 8 16 8C13 8 11 11 11 15C11 23 16 26 16 26Z" fill="#97C459"/>
+    </svg>
+    <blockquote>Es para la sociedad, el planeta y la <em>juventud</em>.</blockquote>
+  </div>
+</section>
+
+<section class="final" id="formulario">
+  <div class="wrap">
+    <div class="final-inner">
+      <span class="eyebrow">Sevilla · Juventud Ya!</span>
+      <h2>Tu misión de 3 horas a la semana empieza <span class="ya-stamp">ya</span>.</h2>
+      <p class="section-intro">Tres formas de unirte. Elige la que menos fricción tenga para ti.</p>
+
+      <div class="final-ctas">
+        <a href="https://wa.me/34600000000" class="btn btn-amber">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.5.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2Z"/></svg>
+          Únete por WhatsApp
+        </a>
+        <a href="#" class="btn btn-ghost-light" onclick="document.getElementById('phone').focus(); return false;">Déjanos tu WhatsApp</a>
+      </div>
+
+      <div class="final-qr">
+        <div id="qrcode-final"></div>
+        <div>
+          <strong>Escanéame</strong>
+          <p>Te lleva directo a nuestro WhatsApp</p>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <label for="phone">O déjanos tu número y te escribimos nosotros</label>
+        <div class="form-row">
+          <input type="tel" id="phone" placeholder="+34 600 000 000">
+          <button class="btn btn-amber" type="button" onclick="alert('Formulario de ejemplo: aquí se conectará al envío real.')">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="logo">
+      <svg viewBox="0 0 32 32" fill="none">
+        <path d="M16 26C16 26 9 23 9 14C9 9 12 6 16 6C20 6 23 9 23 14C23 23 16 26 16 26Z" fill="#5C8F1E"/>
+        <path d="M16 26C16 26 21 23 21 15C21 11 19 8 16 8C13 8 11 11 11 15C11 23 16 26 16 26Z" fill="#97C459"/>
+      </svg>
+      Juventud <span class="ya" style="color:#97C459;">Ya!</span>
+    </div>
+    <div>Sevilla · Jóvenes en acción regenerativa</div>
+  </div>
+</footer>
+
+<script>
+  new QRCode(document.getElementById("qrcode"), {
+    text: "https://wa.me/34600000000",
+    width: 86, height: 86,
+    colorDark: "#0E2606", colorLight: "#ffffff"
+  });
+  new QRCode(document.getElementById("qrcode-final"), {
+    text: "https://wa.me/34600000000",
+    width: 92, height: 92,
+    colorDark: "#0E2606", colorLight: "#ffffff"
+  });
+</script>
+
+</body>
+</html>
