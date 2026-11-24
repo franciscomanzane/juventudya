@@ -23,123 +23,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<link rel="stylesheet" href="/assets/css/comun.css">
+<script src="/assets/js/comun.js"></script>
 <style>
-  :root{
-    --crema: #F5EFE0;
-    --crema-claro: #FBF7EC;
-    --crema-mid: #ECE4D0;
-    --bosque-deep: #0E2606;
-    --bosque: #1F4509;
-    --bosque-2: #2D5E11;
-    --fresco: #5C8F1E;
-    --brote: #97C459;
-    --brote-claro: #C9DDA5;
-    --amber: #E8920C;
-    --amber-deep: #B36B05;
-    --terra: #B84A1B;
-    --carbon: #1A1A17;
-    --carbon-2: #3D3D38;
-    --rojo-bg: #F4DBD4;
-    --rojo-tx: #6E2814;
-    --verde-bg: #E2EBCB;
-    --verde-tx: #1F4509;
-    --display: "Bricolage Grotesque", -apple-system, sans-serif;
-    --body: "Inter", -apple-system, sans-serif;
-    --serif: "Fraunces", Georgia, serif;
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    font-family: var(--body);
-    background: var(--crema);
-    color: var(--carbon);
-    line-height:1.6;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-  body::before{
-    content:""; position:fixed; inset:0; pointer-events:none; z-index:1000;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.05 0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    opacity: .04; mix-blend-mode: multiply;
-  }
-  img,svg{max-width:100%; display:block;}
-  .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
-  a{color:inherit; text-decoration:none;}
-  a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid var(--amber); outline-offset:3px; }
-  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{transition:none !important;} }
-
-  h1,h2,h3{ font-family: var(--display); font-weight:600; letter-spacing:-.02em; line-height:1.05; }
-  .eyebrow{
-    font-family: var(--body);
-    font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
-    color: var(--fresco);
-    display:inline-flex; align-items:center; gap:8px;
-  }
-  .eyebrow::before{
-    content:""; width:18px; height:1px; background: var(--fresco);
-  }
-
-  .ya-stamp{
-    display:inline-block; font-family: var(--serif); font-style: italic;
-    font-weight: 600; color: var(--amber);
-    transform: rotate(-4deg) translateY(-2px);
-    position: relative;
-  }
-  .ya-stamp::after{
-    content:""; position:absolute; left:-6px; right:-6px; bottom:6%; height:30%;
-    background: rgba(232,146,12,.18); border-radius: 3px; z-index:-1;
-    transform: rotate(1.5deg);
-  }
-
-  .btn{
-    display:inline-flex; align-items:center; justify-content:center; gap:10px;
-    padding:16px 26px; border-radius:48px; font-family:var(--body);
-    font-weight:600; font-size:15px; text-decoration:none; border:none;
-    cursor:pointer; transition: all .22s ease;
-  }
-  .btn-primary{
-    background: var(--carbon); color: var(--crema-claro);
-    box-shadow: 0 8px 20px rgba(14,38,6,.18);
-  }
-  .btn-primary:hover{ background: var(--bosque); transform: translateY(-2px); box-shadow: 0 14px 30px rgba(14,38,6,.28);}
-  .btn-primary .arrow{ transition: transform .25s ease; }
-  .btn-primary:hover .arrow{ transform: translateX(4px); }
-  .btn-ghost-dark{
-    background: transparent; color: var(--bosque-deep);
-    border: 1.5px solid rgba(14,38,6,.25);
-  }
-  .btn-ghost-dark:hover{ background: var(--crema-mid); border-color: var(--bosque-deep); }
-  .btn-ghost-light{
-    background: transparent; color: var(--crema-claro);
-    border: 1.5px solid rgba(245,239,224,.35);
-  }
-  .btn-ghost-light:hover{ background: rgba(245,239,224,.08); border-color: var(--crema-claro); }
-  .btn-amber{
-    background: var(--amber); color: #2A1700;
-    box-shadow: 0 8px 24px rgba(232,146,12,.32);
-  }
-  .btn-amber:hover{ transform: translateY(-2px); box-shadow: 0 14px 32px rgba(232,146,12,.42); }
-
-  nav{
-    position: sticky; top:0; z-index: 100;
-    background: rgba(245,239,224,.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(14,38,6,.08);
-  }
-  .nav-inner{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:14px 0;
-  }
-  .logo{ display:flex; align-items:center; gap:10px; font-family: var(--display); font-weight:700; font-size:18px; color: var(--bosque-deep); }
-  .logo svg{ width:26px; height:26px;}
-  .logo .ya{ color: var(--fresco); }
-  .nav-cta{ display:flex; align-items:center; gap:12px; }
-  .nav-loc{
-    font-size:13px; color: var(--carbon-2);
-    display:inline-flex; align-items:center; gap:6px;
-  }
-  .nav-loc svg{ width:14px; height:14px; }
 
   .hero{
     position: relative;
@@ -485,17 +371,6 @@
   .cta-card p{ font-size:13.5px; color: rgba(245,239,224,.65); line-height:1.45; }
   @media (max-width: 880px){ .cta3{ grid-template-columns: 1fr; } }
 
-  footer{
-    background: #08190A;
-    color: rgba(245,239,224,.55); padding: 36px 0;
-    border-top: 1px solid rgba(245,239,224,.06);
-  }
-  .footer-inner{
-    display:flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 18px; font-size: 13px;
-  }
-  .footer-inner .logo{ color: var(--crema-claro);}
-  .footer-inner a:hover{ color: var(--brote); }
 
   @media (max-width: 880px){
     .hero-grid{ grid-template-columns: 1fr; gap: 50px;}
@@ -508,7 +383,6 @@
     .timeline::before{ display:none; }
     .compare-head{ grid-template-columns: 1fr; }
     .compare-row{ grid-template-columns: 1fr; }
-    .nav-loc{ display:none; }
     .extra-card{ grid-template-columns: 1fr; padding: 32px 28px; gap: 24px;}
     .extra-cta{ justify-content: flex-start; }
   }
@@ -537,25 +411,39 @@
 </head>
 <body>
 
-<nav>
+<nav aria-label="Principal">
   <div class="wrap nav-inner">
-    <a href="#" class="logo">
-      <svg viewBox="0 0 32 32" fill="none">
+    <a href="/" class="logo">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
         <path d="M16 26C16 26 9 23 9 14C9 9 12 6 16 6C20 6 23 9 23 14C23 23 16 26 16 26Z" fill="#1F4509"/>
         <path d="M16 26C16 26 21 23 21 15C21 11 19 8 16 8C13 8 11 11 11 15C11 23 16 26 16 26Z" fill="#5C8F1E"/>
         <line x1="16" y1="26" x2="16" y2="29" stroke="#0E2606" stroke-width="2" stroke-linecap="round"/>
       </svg>
       Juventud <span class="ya">Ya!</span>
     </a>
-    <div class="nav-cta">
-      <span class="nav-loc">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-7.5 8-13a8 8 0 1 0-16 0c0 5.5 8 13 8 13Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
-        Sevilla
-      </span>
-      <a data-wa href="https://wa.me/34625168057" class="btn btn-primary" style="padding:12px 20px; font-size:14px;">
-        Escribe por WhatsApp
-        <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+    <div class="nav-right">
+      <div class="nav-menu">
+        <button type="button" class="nav-menu-btn" aria-expanded="false" aria-controls="menu-vision">
+          Nuestra Visión
+          <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m2.5 4.5 3.5 3.5 3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <ul class="nav-menu-list" id="menu-vision">
+          <li><a href="/nuestra-vision/por-que-juventud/">¿Por qué Juventud?</a></li>
+          <li><a href="/nuestra-vision/por-que-ya/">¿Por qué Ya?</a></li>
+          <li><a href="/nuestra-vision/vision/">Visión</a></li>
+        </ul>
+      </div>
+      <div class="nav-cta">
+        <span class="nav-loc">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s8-7.5 8-13a8 8 0 1 0-16 0c0 5.5 8 13 8 13Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
+          Sevilla
+        </span>
+        <a data-wa href="https://wa.me/34625168057" class="btn btn-primary nav-wa" style="padding:12px 20px; font-size:14px;" aria-label="Escribe por WhatsApp">
+          <svg class="wa-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.5.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2Z"/></svg>
+          <span class="wa-text">Escribe por WhatsApp</span>
+          <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 </nav>
@@ -844,10 +732,27 @@
   </div>
 </section>
 
+<section class="apoyos" aria-labelledby="apoyos-titulo">
+  <div class="wrap apoyos-inner">
+    <h2 id="apoyos-titulo">Con el apoyo de</h2>
+    <ul class="apoyos-list">
+      <li><a href="https://serraniasvivas.org/" target="_blank" rel="noopener" title="Serranías Vivas (se abre en una pestaña nueva)">
+        <img src="/assets/logos/serranias-vivas.webp" alt="Serranías Vivas" width="211" height="140" loading="lazy" decoding="async">
+      </a></li>
+      <li><a href="https://agrocomerciovivo.es/" target="_blank" rel="noopener" title="Agro Comercio Vivo (se abre en una pestaña nueva)">
+        <img src="/assets/logos/agro-comercio-vivo.webp" alt="Agro Comercio Vivo" width="354" height="140" loading="lazy" decoding="async">
+      </a></li>
+      <li><a href="https://unisaludables.com/2026/06/22/en-sevilla-la-iniciativa-juventud-ya-se-lanza-a-la-accion/" target="_blank" rel="noopener" title="REUPS — Red Española de Universidades Promotoras de Salud (se abre en una pestaña nueva)">
+        <img src="/assets/logos/reups.webp" alt="REUPS — Red Española de Universidades Promotoras de Salud" width="241" height="119" loading="lazy" decoding="async">
+      </a></li>
+    </ul>
+  </div>
+</section>
+
 <footer>
   <div class="wrap footer-inner">
     <div class="logo">
-      <svg viewBox="0 0 32 32" fill="none">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
         <path d="M16 26C16 26 9 23 9 14C9 9 12 6 16 6C20 6 23 9 23 14C23 23 16 26 16 26Z" fill="#5C8F1E"/>
         <path d="M16 26C16 26 21 23 21 15C21 11 19 8 16 8C13 8 11 11 11 15C11 23 16 26 16 26Z" fill="#97C459"/>
       </svg>
@@ -858,27 +763,8 @@
 </footer>
 
 <script>
-  /* ==========================================================
-     CONFIGURACIÓN — cambia SOLO estas líneas.
-     Se aplican a los dos códigos QR y a todos los enlaces
-     de WhatsApp de la página.
-     ========================================================== */
-  var CONFIG = {
-    whatsapp:        "34625168057",                     // número de WhatsApp, sin + ni espacios
-    enlaceQR:        "https://wa.me/qr/GKA3CE4V32CIO1", // lo que codifican los dos QR
-    mensajeWhatsApp: "Hola, quiero unirme a Juventud Ya!",
-    mensajeDifusion: "Hola, quiero unirme al canal de difusión de Juventud Ya!"
-  };
-  /* ========================================================== */
-
+  /* La configuración de WhatsApp y del QR está en assets/js/comun.js */
   (function(){
-    var waBase = "https://wa.me/" + CONFIG.whatsapp;
-
-    document.querySelectorAll("[data-wa]").forEach(function(el){
-      var msg = el.getAttribute("data-wa") === "difusion" ? CONFIG.mensajeDifusion : CONFIG.mensajeWhatsApp;
-      el.setAttribute("href", waBase + "?text=" + encodeURIComponent(msg));
-    });
-
     new QRCode(document.getElementById("qrcode"), {
       text: CONFIG.enlaceQR,
       width: 92, height: 92,
