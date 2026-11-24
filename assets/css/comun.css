@@ -272,7 +272,7 @@ footer{
 .red svg{ width:18px; height:18px; }
 .red:hover{ background: var(--brote); border-color: var(--brote); color: var(--bosque-deep) !important; transform: translateY(-2px); }
 
-.final-redes{ margin-top: 44px; display:flex; flex-direction:column; align-items:center; gap:16px; }
+.final-redes{ margin-top: 80px; display:flex; flex-direction:column; align-items:center; gap:16px; }
 .final-redes p{ font-size:15px; color: rgba(245,239,224,.72); }
 .final-redes-btns{ display:flex; flex-wrap:wrap; justify-content:center; gap:12px; }
 .final-redes .btn{ padding:12px 22px; font-size:14px; }
@@ -282,4 +282,5 @@ footer{
   .footer-inner{ flex-direction:column; text-align:center; }
   .redes{ flex-wrap:wrap; justify-content:center; }
   .redes-handle{ width:100%; margin:0 0 4px; }
+  .final-redes{ margin-top: 60px; }
 }
